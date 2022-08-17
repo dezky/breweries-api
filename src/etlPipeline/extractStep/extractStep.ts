@@ -1,6 +1,6 @@
 import { getPageOfBreweries } from './breweriesApiRequest';
 
-const PAGE_LIMIT = process.env.PAGE_LIMIT || 5;
+const PAGE_LIMIT = process.env.PAGE_LIMIT || 2;
 
 export const getAllBreweries = async () => {
   const breweries = [];

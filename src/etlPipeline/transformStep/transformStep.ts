@@ -1,5 +1,10 @@
 import { BreweryResponseItem } from '../../types';
-import { convertPropertiesToCamelCase, groupByState, removeNullProperties } from './steps';
+import {
+  addRegion,
+  convertPropertiesToCamelCase,
+  groupByState,
+  removeNullProperties,
+} from './steps';
 
 export const transformBreweries = (breweries: BreweryResponseItem[]) => {
   const breweriesWithoutNullProperties = removeNullProperties(breweries);
@@ -8,7 +13,9 @@ export const transformBreweries = (breweries: BreweryResponseItem[]) => {
     breweriesWithoutNullProperties
   );
 
-  const breweriesGroupedByState = groupByState(breweriesWithCamelCaseProperties);
+  const breweriesWithRegion = addRegion(breweriesWithCamelCaseProperties);
+
+  const breweriesGroupedByState = groupByState(breweriesWithRegion);
 
   return breweriesGroupedByState;
 };

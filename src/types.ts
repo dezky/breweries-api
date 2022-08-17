@@ -32,6 +32,8 @@ type BaseBrewery = {
   phone: string | null;
 };
 
+type Region = 'Unknown' | 'West' | 'Midwest' | 'South' | 'Northeast';
+
 export type BreweryResponseItem = BaseBrewery & {
   brewery_type: string;
   address_2: string | null;
@@ -48,16 +50,22 @@ export type PartialBreweryResponseItem = MakeOptional<BreweryResponseItem, Nulla
 export type BreweryCamelCase = MakeOptional<
   BaseBrewery & {
     breweryType: string;
-    address2?: string | null;
-    address3?: string | null;
-    countyProvince?: string | null;
+    address2: string | null;
+    address3: string | null;
+    countyProvince: string | null;
     postalCode: string;
-    websiteUrl?: string | null;
+    websiteUrl: string | null;
     updatedAt: string;
     createdAt: string;
   },
   NullableCamelCaseProperty
 >;
+
+export type BreweryWithRegion = Omit<BreweryCamelCase, 'latitude' | 'longitude'> & {
+  latitude: string;
+  longitude: string;
+  region: Region;
+};
 
 export const isNullableCamelCaseProperty = (
   property: keyof BreweryCamelCase
