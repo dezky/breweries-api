@@ -3,7 +3,7 @@ import { etlPipeline } from './etlPipeline';
 
 const app: Application = express();
 
-const port = process.env.PROT || 4000;
+const port = process.env.PORT || 4000;
 
 app.get('/breweries', async (_, res: Response) => {
   try {
